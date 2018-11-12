@@ -1441,7 +1441,7 @@ section,
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  min-height: 100vh;
+  min-height: 75vh;
   /*Fullscreen*/
   /* Prototyping? min-height: 720px (Baseline: 8px = .8rem)*/
   padding: 2.4rem;
@@ -1452,7 +1452,7 @@ section,
   @media (min-width: 1024px) {
     section,
     .slide {
-      padding-bottom: 12rem;
+      padding-bottom: 0/*12rem*/;
       padding-top: 12rem; } }
 
 /*slide with no padding (full card, .embed youtube video...) */
