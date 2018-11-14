@@ -493,7 +493,7 @@ pre {
   font-size: 1.6rem;
   line-height: 2.4rem;
   overflow: auto;
-  padding: 2.4rem;
+  padding: 1.4rem;
   text-align: left;
   white-space: pre-wrap;
   width: 100%;
@@ -757,7 +757,7 @@ Auto-fill & Equal height === */
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    padding: 2.4rem;
+    padding: 10px;;
     position: relative;
     -webkit-transition: .3s;
     transition: .3s;
@@ -1444,7 +1444,7 @@ section,
   min-height: 75vh;
   /*Fullscreen*/
   /* Prototyping? min-height: 720px (Baseline: 8px = .8rem)*/
-  padding: 2.4rem;
+  padding: 5px;
   /*Fixed/Visible header? padding-top: 12rem; */
   page-break-after: always;
   position: relative;
@@ -1452,8 +1452,8 @@ section,
   @media (min-width: 1024px) {
     section,
     .slide {
-      padding-bottom: 0/*12rem*/;
-      padding-top: 12rem; } }
+      padding-bottom: 4rem;
+      padding-top: 4rem; } }
 
 /*slide with no padding (full card, .embed youtube video...) */
 .fullscreen {

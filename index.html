@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>CSSLint勉強会</title>
+    <title>CSS勉強会</title>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,700,700i%7CMaitree:200,300,400,600,700&amp;subset=latin-ext" rel="stylesheet">
@@ -27,16 +27,28 @@
             <p class="text-intro">CSSを書く上で気をつけておいた方が良いポイントを説明します。</p>
           </div>
         </section>
+        <section><!-- Page 目次 -->
+          <div class="wrap aligncenter bg-green">
+            <h1><strong>目次</strong></h1><br>
+          </div>
+          <div class="wrap alignleft bg-green">
+            <div class="alignleft" style="margin-left: 25%;">
+              <h3><strong>1. CSSの優先度</strong></h3>
+              <h3><strong>2. スタイルの上書き</strong></h3>
+              <h3><strong>3. CSSLintのルールを紹介</strong></h3>
+            </div>
+          </div>
+        </section>
         <section><!-- Page 2 -->
           <div class="wrap aligncenter bg-green">
-            <h1><strong>CSSの優先度</strong></h1>
+            <h1><strong>1. CSSの優先度</strong></h1>
             <p class="text-intro"></p>
           </div>
         </section>
         <section><!-- Page 3 -->
             <div class="wrap">
-              <h2><strong>CSSの優先度</strong></h2>
-              <h4><strong>1. 基本的には後から書いた方が優先</strong></h4><br>
+              <h2><strong>1. CSSの優先度</strong></h2>
+              <h4><strong>1-1. 基本的には後から書いた方が優先</strong></h4><br>
               <div class="column code">
                 <p>同じセレクタの場合、後から書いた方が優先されるのが基本原則です。
                 <p>id/classなどで指定した場合も同じです。</p>
@@ -64,20 +76,19 @@ h1 { color: red; } /* 優先 */
         </section>
         <section><!-- Page 4 -->
           <div class="wrap">
-            <h2><strong>CSSの優先度</strong></h2>
-            <h4><strong>2. 詳細度</strong></h4><br>
+            <h2><strong>1. CSSの優先度</strong></h2>
+            <h4><strong>1-2. 詳細度</strong></h4><br>
             <div class="column code">
               <p>CSSのセレクタは要素名/id/class/擬似クラス/擬似要素など様々な書き方ができます。<br>
                  詳細度とは、CSSの宣言が適用される際の重みでスコアが高いものが優先されます。<br>
                  詳細度のスコアはセレクタの指定方法によって計算されます。<br>
-                 複数の宣言が同じ詳細度の場合は最後に宣言されたものが適用されます。<br>
-                 また、HTMLのstyle属性で書いたものはCSSファイル内での定義より優先されます。</p>
+                 複数の宣言が同じ詳細度の場合は最後に宣言されたものが適用されます。
             </div>
             <div class="grid vertical-align">
               <div class="column">
                 <h6>HTML</h6>
                 <pre>
-&lt;h1 id='title' class='title' style='color: red;'&gt;CSS勉強会&lt;/h1&gt;
+&lt;h1 id='title' class='title'&gt;CSS勉強会&lt;/h1&gt;
                 </pre>
               </div>
               <div class="column">
@@ -87,7 +98,7 @@ h1 { color: red; } /* 優先 */
 h1 { color: yellow; }             /* 詳細度:   1 */
 .title { color: pink; }           /* 詳細度:  10 */
 [class='title'] { color: black; } /* 詳細度:  10 */
-#title { color: green; }          /* 詳細度: 100 */
+#title { color: green; }          <span style="color: red;">/* 詳細度: 100 */</span>
                 </pre>
               </div>
            </div>
@@ -95,29 +106,53 @@ h1 { color: yellow; }             /* 詳細度:   1 */
         </section>
         <section><!-- Page 5 -->
           <div class="wrap">
-            <h2><strong>CSSの優先度</strong></h2>
-            <h4><strong>2. 詳細度</strong></h4><br>
+            <h2><strong>1. CSSの優先度</strong></h2>
+            <h4><strong>1-3. 詳細度(style属性)</strong></h4><br>
             <div class="column code">
-              <p>詳細度の計算についてもう少しだけ説明します。<br>
-              (<a href='https://qiita.com/oh_rusty_nail/items/e896825cd54e5c0a3666'>CSSセレクタの優先順位の計算方法</a> より)</p>
-              <p>HTMLのstyle属性とCSS両方にスタイルを書いていると混乱する元になるので、スタイルはCSSファイルに集約することをお勧めします。</p>
+              <p><span style="font-weight: bold;color: #FF3333;">HTMLのstyle属性で書いたものはCSSファイル内での定義より優先</span>されます。<br>
+              <p>混乱する元になるので、スタイルはCSSファイルに集約することをお勧めします。</p>
             </div>
             <div class="grid vertical-align">
-              <div class="column">
-                <h6>詳細度の計算式</h6>
-                <img style='width: 416px; height: 334px;' src='static/images/shosaido.png'/>
-              </div>
-              <div class="column">
-                <h6>詳細度の計算例</h6>
-                <img style='width: 669px; height: 330px;' src='static/images/shosaido2.png'/>
-              </div>
-           </div>
+                <div class="column">
+                  <h6>HTML</h6>
+                  <pre>
+&lt;h1 id='title' class='title' <span style="color: red;">style='color: red;'</span>&gt;CSS勉強会&lt;/h1&gt;
+                  </pre>
+                </div>
+                <div class="column">
+                  <h6>CSS</h6>
+                  <pre>
+  * { color: white; }               /* 詳細度:   0 */
+  h1 { color: yellow; }             /* 詳細度:   1 */
+  .title { color: pink; }           /* 詳細度:  10 */
+  [class='title'] { color: black; } /* 詳細度:  10 */
+  #title { color: green; }          /* 詳細度: 100 */
+                  </pre>
+                </div>
+             </div>
         </div>
       </section>
       <section><!-- Page 6 -->
         <div class="wrap">
-          <h2><strong>CSSの優先度</strong></h2>
-          <h4><strong>3. !important</strong></h4><br>
+          <h2><strong>1. CSSの優先度</strong></h2>
+          <h4><strong>1-4. 詳細度の計算</strong></h4><br>
+          <div class="grid vertical-align">
+            <div class="column">
+              <h6>詳細度の計算式</h6>
+              <img style='width: 416px; height: 334px;' src='static/images/shosaido.png'/>
+            </div>
+            <div class="column">
+              <h6>詳細度の計算例</h6>
+              <img style='width: 669px; height: 330px;' src='static/images/shosaido2.png'/>
+            </div>
+         </div>
+         <p>( <a href='https://qiita.com/oh_rusty_nail/items/e896825cd54e5c0a3666'>CSSセレクタの優先順位の計算方法</a> より )</p>
+      </div>
+    </section>
+      <section><!-- Page 6 -->
+        <div class="wrap">
+          <h2><strong>1. CSSの優先度</strong></h2>
+          <h4><strong>1-５. !important</strong></h4><br>
           <div class="column code">
             <p></p>
           </div>
@@ -143,14 +178,14 @@ h1 { color: yellow; }             /* 詳細度:   1 */
       </section>
       <section><!-- Page X -->
         <div class="wrap aligncenter bg-green">
-          <h1><strong>CSSを書くときに注意した方が良いこと</strong></h1>
-          <p class="text-intro"></p>
+          <h1><strong>2. スタイルの上書き</strong></h1>
+          <p class="text-intro">意図しないスタイルが当たってしまい困ったことはありませんか？</p>
         </div>
       </section>
       <section><!-- Page  -->
         <div class="wrap">
-          <h2><strong>スタイルの上書き</strong></h2>
-          <h4><strong></strong></h4><br>
+          <h2><strong>2. スタイルの上書き</strong></h2>
+          <h4><strong>2-1. 上書きとは</strong></h4><br>
           <div class="column code">
             <p></p>
           </div>
@@ -170,8 +205,8 @@ h1 { color: yellow; }             /* 詳細度:   1 */
       </section>
       <section><!-- Page  -->
         <div class="wrap">
-          <h2><strong>セレクタにidを使うと速いって本当？</strong></h2>
-          <h4><strong></strong></h4><br>
+          <h2><strong>パフォーマンスに関すること</strong></h2>
+          <h4><strong>セレクタにidを使うと速いって本当？</strong></h4><br>
           <div class="column code">
             <p></p>
           </div>
