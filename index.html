@@ -107,7 +107,7 @@ h1 { color: yellow; }             /* 詳細度:   1 */
         <section><!-- Page 5 -->
           <div class="wrap">
             <h2><strong>1. CSSの優先度</strong></h2>
-            <h4><strong>1-3. 詳細度(style属性)</strong></h4><br>
+            <h4><strong>1-3. 詳細度(インライン記述)</strong></h4><br>
             <div class="column code">
               <p><span style="font-weight: bold;color: #FF3333;">HTMLのstyle属性で書いたものはCSSファイル内での定義より優先</span>されます。<br>
               <p>混乱する元になるので、スタイルはCSSファイルに集約することをお勧めします。</p>
@@ -187,17 +187,31 @@ h1 { color: yellow; }             /* 詳細度:   1 */
           <h2><strong>2. スタイルの上書き</strong></h2>
           <h4><strong>2-1. 上書きとは</strong></h4><br>
           <div class="column code">
-            <p></p>
+            <p>スタイルのルールはCSSだけでなくHTMLやJavascriptなどそれぞれで定義できます。<br>
+            CSSには同じプロパティを何度も書くことはでき、最終的に優先度の高いルールが適用されます。<br>
+            ルールを上書きしてしまうと、使われないスタイル定義が残り続けて保守し辛くなったり、<br>
+            意図しないスタイルを当ててしまうことがあります。<br>
+            </p>
           </div>
           <div class="grid vertical-align">
             <div class="column">
               <h6>HTML</h6>
               <pre>
+<link rel="stylesheet" type='text/css' media='all' href="main.css">
+<div id='boxes'>
+  <div class='box1'>BOX1</div>
+  <div class='box2'>BOX2</div>
+  <div class='box3'>BOX3</div>
+</div>
               </pre>
             </div>
             <div class="column">
-              <h6>CSS</h6>
+              <h6>CSS(main.css)</h6>
               <pre>
+#boxes { color: green; }
+div.box1 { color: red; }
+div > div { color: yellow; }
+[class^='box'] { color: blue; }
               </pre>
             </div>
          </div>
