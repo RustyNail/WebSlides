@@ -94,9 +94,9 @@ h1 { color: red; } /* 優先 */
               <div class="column">
                 <h6>CSS</h6>
                 <pre>
-* { color: white; }               /* 詳細度:   0 */
+* { color: pink; }                /* 詳細度:   0 */
 h1 { color: yellow; }             /* 詳細度:   1 */
-.title { color: pink; }           /* 詳細度:  10 */
+.title { color: white; }          /* 詳細度:  10 */
 [class='title'] { color: black; } /* 詳細度:  10 */
 #title { color: green; }          <span style="color: red;">/* 詳細度: 100 */</span>
                 </pre>
@@ -122,9 +122,9 @@ h1 { color: yellow; }             /* 詳細度:   1 */
                 <div class="column">
                   <h6>CSS</h6>
                   <pre>
-  * { color: white; }               /* 詳細度:   0 */
+  * { color: pink; }                /* 詳細度:   0 */
   h1 { color: yellow; }             /* 詳細度:   1 */
-  .title { color: pink; }           /* 詳細度:  10 */
+  .title { color: white; }          /* 詳細度:  10 */
   [class='title'] { color: black; } /* 詳細度:  10 */
   #title { color: green; }          /* 詳細度: 100 */
                   </pre>
@@ -154,7 +154,12 @@ h1 { color: yellow; }             /* 詳細度:   1 */
           <h2><strong>1. CSSの優先度</strong></h2>
           <h4><strong>1-５. !important</strong></h4><br>
           <div class="column code">
-            <p></p>
+            <p>値の横に<span style='font-weight: bold; color: #FF3333;'>!important</span>を付けると最優先されます。<br>
+            これが多用されてしまうと、新しくルールを定義しても効くはずのスタイルが効かないなどの現象を招いてしまいます。<br>
+            以下のCSSの例であれば、詳細度0のユニバーサルセレクタ(*)で定義したルールが適用されます。<br>
+            CSSを大きく破綻させてしまう元となるため、基本的には避けたい記述です。<br>
+            しかし、優先度最強なのを利用して意図的に使うこともあります。<br>
+            思ったようにスタイルが効かなかったり、表示が崩れている時にはどのルールが影響しているかを手っ取り早くデバッグすることができます。</p>
           </div>
           <div class="grid vertical-align">
             <div class="column">
@@ -166,9 +171,9 @@ h1 { color: yellow; }             /* 詳細度:   1 */
             <div class="column">
               <h6>CSS</h6>
               <pre>
-* { color: white; }               /* 詳細度:   0 */
+* { color: pink <span style='color: red;'>!important</span>; }     /* 詳細度:   0 */
 h1 { color: yellow; }             /* 詳細度:   1 */
-.title { color: pink; }           /* 詳細度:  10 */
+.title { color: white; }          /* 詳細度:  10 */
 [class='title'] { color: black; } /* 詳細度:  10 */
 #title { color: green; }          /* 詳細度: 100 */
               </pre>
