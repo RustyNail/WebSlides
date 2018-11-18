@@ -59,7 +59,7 @@
                   <pre>
 &lt;h1&gt;CSS勉強会&lt;/h1&gt;
 &lt;h2 class='theme'&gt;CSSの優先度&lt;/h2&gt;
-                  </pre>
+</pre>
                 </div>
                 <div class="column">
                   <h6>CSS</h6>
@@ -69,7 +69,7 @@ h1 { color: red; } /* 優先 */
 
 .theme { color: blue; }
 .theme { color: red; } /* 優先 */
-                  </pre>
+</pre>
                 </div>
              </div>
           </div>
@@ -89,7 +89,7 @@ h1 { color: red; } /* 優先 */
                 <h6>HTML</h6>
                 <pre>
 &lt;h1 id='title' class='title'&gt;CSS勉強会&lt;/h1&gt;
-                </pre>
+</pre>
               </div>
               <div class="column">
                 <h6>CSS</h6>
@@ -99,7 +99,7 @@ h1 { color: yellow; }             /* 詳細度:   1 */
 .title { color: white; }          /* 詳細度:  10 */
 [class='title'] { color: black; } /* 詳細度:  10 */
 #title { color: green; }          <span style="color: red;">/* 詳細度: 100 */</span>
-                </pre>
+</pre>
               </div>
            </div>
         </div>
@@ -117,17 +117,17 @@ h1 { color: yellow; }             /* 詳細度:   1 */
                   <h6>HTML</h6>
                   <pre>
 &lt;h1 id='title' class='title' <span style="color: red;">style='color: red;'</span>&gt;CSS勉強会&lt;/h1&gt;
-                  </pre>
+</pre>
                 </div>
                 <div class="column">
                   <h6>CSS</h6>
                   <pre>
-  * { color: pink; }                /* 詳細度:   0 */
-  h1 { color: yellow; }             /* 詳細度:   1 */
-  .title { color: white; }          /* 詳細度:  10 */
-  [class='title'] { color: black; } /* 詳細度:  10 */
-  #title { color: green; }          /* 詳細度: 100 */
-                  </pre>
+* { color: pink; }                /* 詳細度:   0 */
+h1 { color: yellow; }             /* 詳細度:   1 */
+.title { color: white; }          /* 詳細度:  10 */
+[class='title'] { color: black; } /* 詳細度:  10 */
+#title { color: green; }          /* 詳細度: 100 */
+</pre>
                 </div>
              </div>
         </div>
@@ -166,7 +166,7 @@ h1 { color: yellow; }             /* 詳細度:   1 */
               <h6>HTML</h6>
               <pre>
 &lt;h1 id='title' class='title' style='color: red;'&gt;CSS勉強会&lt;/h1&gt;
-              </pre>
+</pre>
             </div>
             <div class="column">
               <h6>CSS</h6>
@@ -176,7 +176,7 @@ h1 { color: yellow; }             /* 詳細度:   1 */
 .title { color: white; }          /* 詳細度:  10 */
 [class='title'] { color: black; } /* 詳細度:  10 */
 #title { color: green; }          /* 詳細度: 100 */
-              </pre>
+</pre>
             </div>
          </div>
       </div>
@@ -192,32 +192,89 @@ h1 { color: yellow; }             /* 詳細度:   1 */
           <h2><strong>2. スタイルの上書き</strong></h2>
           <h4><strong>2-1. 上書きとは</strong></h4><br>
           <div class="column code">
-            <p>スタイルのルールはCSSだけでなくHTMLやJavascriptなどそれぞれで定義できます。<br>
-            CSSには同じプロパティを何度も書くことはでき、最終的に優先度の高いルールが適用されます。<br>
-            ルールを上書きしてしまうと、使われないスタイル定義が残り続けて保守し辛くなったり、<br>
-            意図しないスタイルを当ててしまうことがあります。<br>
+            <p>スタイルのルールはCSSだけでなくHTMLやJavaScriptなどそれぞれで定義できます。<br>
+            ルールは同じプロパティに対して何度も定義することはでき、最終的に優先度の高いルールが適用されます。<br>
+            ルールを上書きしてしまうと、使われないルールの定義が残り続けて保守し辛くなったり、<br>
+            意図しないスタイルを当ててしまうことがあります。また、詳細度の関係で上書きしたくてもできないケースがあります。</p>
+            </p>
+          </div>
+      </div>
+      </section>
+      <section><!-- Page  -->
+        <div class="wrap">
+          <h2><strong>2. スタイルの上書き</strong></h2>
+          <h4><strong>2-2. 詳細度と上書きの関係</strong></h4><br>
+          <div class="column code">
+            <p>以下の例では、sample2.cssでBOX1の文字色を変えるルールを書いていますが、<br>
+            sample1.cssで定義した.boxのルールの方が詳細度が高いため効きません。</p>
             </p>
           </div>
           <div class="grid vertical-align">
             <div class="column">
               <h6>HTML</h6>
               <pre>
-<link rel="stylesheet" type='text/css' media='all' href="main.css">
-<div id='boxes'>
-  <div class='box1'>BOX1</div>
-  <div class='box2'>BOX2</div>
-  <div class='box3'>BOX3</div>
-</div>
-              </pre>
+&lt;link rel='stylesheet' type='text/css' href='sample1.css'&gt;
+&lt;link rel='stylesheet' type='text/css' href='sample2.css'&gt;
+&lt;div id='boxes'&gt;
+  &lt;div class='box1 box'&gt;BOX1&lt;/div&gt;
+  &lt;div class='box2 box'&gt;BOX2&lt;/div&gt;
+  &lt;div class='box3 box'&gt;BOX3&lt;/div&gt;
+&lt;/div&gt;
+</pre>
             </div>
             <div class="column">
-              <h6>CSS(main.css)</h6>
+              <h6>CSS(sample1.css)</h6>
               <pre>
 #boxes { color: green; }
-div.box1 { color: red; }
-div > div { color: yellow; }
-[class^='box'] { color: blue; }
-              </pre>
+#boxes div.box { color: red; }
+</pre>
+            </div>
+            <div class="column">
+              <h6>CSS(sample2.css)</h6>
+              <pre>
+/* .box1の文字色を指定 */
+#boxes > .box1 { color: blue; }
+</pre>
+            </div>
+         </div>
+      </div>
+      </section>
+      <section><!-- Page  -->
+        <div class="wrap">
+          <h2><strong>2. スタイルの上書き</strong></h2>
+          <h4><strong>2-3. JavaScriptに何でもさせ過ぎている</strong></h4><br>
+          <div class="column code">
+            <p>CSSCSS/HTML/JavaScriptそれぞれでスタイルを定義してしまい複雑な構成になっている例を紹介します。<br>
+            基本的には構造に関することはHTMLに、見た目に関することはCSSに、動きに関することはJavaScriptに書いておくと保守をしやすいです。</p>
+          </div>
+          <div class="grid vertical-align">
+            <div class="column">
+              <h6>HTML</h6>
+              <pre>
+&lt;script src='sample.js'&gt;&lt;/script&gt;
+
+&lt;div id='boxes'&gt;&lt;/div&gt;
+</pre>
+            </div>
+<!--
+            <div class="column">
+              <h6>CSS(sample.css)</h6>
+              <pre>
+#boxes > .box1 { color: blue; }
+</pre>
+            </div>
+-->
+            <div class="column">
+              <h6>JavaScript(sample.js)</h6>
+              <pre>
+$('#boxes').append(
+  $('&lt;div&gt;', {class: 'box', text: 'BOX1'}),
+  $('&lt;div&gt;', {class: 'box', text: 'BOX2'}),
+  $('&lt;div&gt;', {class: 'box', text: 'BOX3'}),
+);
+$('#boxes > .box1').css('color', 'blue');
+$('#boxes').hide();
+</pre>
             </div>
          </div>
       </div>
