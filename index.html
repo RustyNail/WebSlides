@@ -55,14 +55,14 @@
               </div>
               <div class="grid vertical-align">
                 <div class="column">
-                  <h6>HTML</h6>
+                  <h6 style='color: green'>HTML</h6>
                   <pre>
 &lt;h1&gt;CSS勉強会&lt;/h1&gt;
 &lt;h2 class='theme'&gt;CSSの優先度&lt;/h2&gt;
 </pre>
                 </div>
                 <div class="column">
-                  <h6>CSS</h6>
+                  <h6 style='color: blue'>CSS</h6>
                   <pre>
 h1 { color: blue; }
 h1 { color: red; } /* 優先 */
@@ -86,13 +86,13 @@ h1 { color: red; } /* 優先 */
             </div>
             <div class="grid vertical-align">
               <div class="column">
-                <h6>HTML</h6>
+                <h6 style='color: green'>HTML</h6>
                 <pre>
 &lt;h1 id='title' class='title'&gt;CSS勉強会&lt;/h1&gt;
 </pre>
               </div>
               <div class="column">
-                <h6>CSS</h6>
+                <h6 style='color: blue'>CSS</h6>
                 <pre>
 * { color: pink; }                /* 詳細度:   0 */
 h1 { color: yellow; }             /* 詳細度:   1 */
@@ -114,13 +114,13 @@ h1 { color: yellow; }             /* 詳細度:   1 */
             </div>
             <div class="grid vertical-align">
                 <div class="column">
-                  <h6>HTML</h6>
+                  <h6 style='color: green'>HTML</h6>
                   <pre>
 &lt;h1 id='title' class='title' <span style="color: red;">style='color: red;'</span>&gt;CSS勉強会&lt;/h1&gt;
 </pre>
                 </div>
                 <div class="column">
-                  <h6>CSS</h6>
+                  <h6 style='color: blue'>CSS</h6>
                   <pre>
 * { color: pink; }                /* 詳細度:   0 */
 h1 { color: yellow; }             /* 詳細度:   1 */
@@ -163,13 +163,13 @@ h1 { color: yellow; }             /* 詳細度:   1 */
           </div>
           <div class="grid vertical-align">
             <div class="column">
-              <h6>HTML</h6>
+              <h6 style='color:green'>HTML</h6>
               <pre>
 &lt;h1 id='title' class='title' style='color: red;'&gt;CSS勉強会&lt;/h1&gt;
 </pre>
             </div>
             <div class="column">
-              <h6>CSS</h6>
+              <h6 style='color: blue'>CSS</h6>
               <pre>
 * { color: pink <span style='color: red;'>!important</span>; }     /* 詳細度:   0 */
 h1 { color: yellow; }             /* 詳細度:   1 */
@@ -206,12 +206,12 @@ h1 { color: yellow; }             /* 詳細度:   1 */
           <h4><strong>2-2. 詳細度と上書きの関係</strong></h4><br>
           <div class="column code">
             <p>以下の例では、sample2.cssでBOX1の文字色を変えるルールを書いていますが、<br>
-            sample1.cssで定義した.boxのルールの方が詳細度が高いため効きません。</p>
+            sample1.cssで定義した.boxのルールの方が詳細度が高いため後で読み込まれているsample2.cssのルールが効きません。</p>
             </p>
           </div>
           <div class="grid vertical-align">
             <div class="column">
-              <h6>HTML</h6>
+              <h6 style='color: green'>HTML</h6>
               <pre>
 &lt;link rel='stylesheet' type='text/css' href='sample1.css'&gt;
 &lt;link rel='stylesheet' type='text/css' href='sample2.css'&gt;
@@ -223,14 +223,14 @@ h1 { color: yellow; }             /* 詳細度:   1 */
 </pre>
             </div>
             <div class="column">
-              <h6>CSS(sample1.css)</h6>
+              <h6 style='color: blue'>CSS(sample1.css)</h6>
               <pre>
 #boxes { color: green; }
 #boxes div.box { color: red; }
 </pre>
             </div>
             <div class="column">
-              <h6>CSS(sample2.css)</h6>
+              <h6 style='color: blue'>CSS(sample2.css)</h6>
               <pre>
 /* .box1の文字色を指定 */
 #boxes > .box1 { color: blue; }
@@ -242,37 +242,35 @@ h1 { color: yellow; }             /* 詳細度:   1 */
       <section><!-- Page  -->
         <div class="wrap">
           <h2><strong>2. スタイルの上書き</strong></h2>
-          <h4><strong>2-3. JavaScriptに何でもさせ過ぎている</strong></h4><br>
+          <h4><strong>2-3. JavaScriptでいろいろやり過ぎている</strong></h4><br>
           <div class="column code">
             <p>CSSCSS/HTML/JavaScriptそれぞれでスタイルを定義してしまい複雑な構成になっている例を紹介します。<br>
-            基本的には構造に関することはHTMLに、見た目に関することはCSSに、動きに関することはJavaScriptに書いておくと保守をしやすいです。</p>
+            JavaScirptで様々なことができるので便利ですが、やり過ぎには注意です。<br>
+            基本的には<span style='font-weight: bold; color: green'>構造</span>に関することは<span style='font-weight: bold; color: green'>HTML</span>に、<span style='font-weight: bold; color: blue'>見た目</span>に関することは<span style='font-weight: bold; color: blue'>CSS</span>に、<span style='font-weight: bold; color: #FF5F17''>動き</span>に関することは<span style='font-weight: bold; color: #FF5F17''>JavaScript</span>に書く方のをおすすめします。</p>
           </div>
           <div class="grid vertical-align">
             <div class="column">
-              <h6>HTML</h6>
+              <h6 style='color: green'>HTML</h6>
               <pre>
 &lt;script src='sample.js'&gt;&lt;/script&gt;
 
 &lt;div id='boxes'&gt;&lt;/div&gt;
 </pre>
             </div>
-<!--
             <div class="column">
-              <h6>CSS(sample.css)</h6>
+              <h6 style='color: #FF5F17'>JavaScript(sample.js)</h6>
               <pre>
-#boxes > .box1 { color: blue; }
-</pre>
-            </div>
--->
-            <div class="column">
-              <h6>JavaScript(sample.js)</h6>
-              <pre>
+// 既存の要素の子要素を追加
 $('#boxes').append(
-  $('&lt;div&gt;', {class: 'box', text: 'BOX1'}),
-  $('&lt;div&gt;', {class: 'box', text: 'BOX2'}),
-  $('&lt;div&gt;', {class: 'box', text: 'BOX3'}),
+  $('&lt;div&gt;', {class: 'box1', text: 'BOX1'}),
+  $('&lt;div&gt;', {class: 'box2', text: 'BOX2'}),
+  $('&lt;div&gt;', {class: 'box3', text: 'BOX3'}),
 );
+
+// 追加した要素の文字色を指定
 $('#boxes > .box1').css('color', 'blue');
+
+// 要素を非表示に
 $('#boxes').hide();
 </pre>
             </div>
