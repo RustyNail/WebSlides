@@ -252,6 +252,7 @@ h1 { color: yellow; }             /* 詳細度:   1 */
             <div class="column">
               <h6 style='color: green'>HTML</h6>
               <pre>
+&lt;script src='http://semooh.jp/jquery/js/jquery.js'&gt;&lt;/script&gt;
 &lt;script src='sample.js'&gt;&lt;/script&gt;
 
 &lt;div id='boxes'&gt;&lt;/div&gt;
@@ -260,18 +261,69 @@ h1 { color: yellow; }             /* 詳細度:   1 */
             <div class="column">
               <h6 style='color: #FF5F17'>JavaScript(sample.js)</h6>
               <pre>
-// 既存の要素の子要素を追加
-$('#boxes').append(
-  $('&lt;div&gt;', {class: 'box1', text: 'BOX1'}),
-  $('&lt;div&gt;', {class: 'box2', text: 'BOX2'}),
-  $('&lt;div&gt;', {class: 'box3', text: 'BOX3'}),
-);
-
-// 追加した要素の文字色を指定
-$('#boxes > .box1').css('color', 'blue');
-
-// 要素を非表示に
-$('#boxes').hide();
+$(function() {
+  // <span style='color: green'>既存の要素の子要素を作成</span>
+  $('#boxes').append(
+    $('&lt;div&gt;').addClass('box1').text('BOX1'),
+    $('&lt;div&gt;').addClass('box2').text('BOX2'),
+    $('&lt;div&gt;').addClass('box3').text('BOX3')
+  );
+  // <span style='color: blue'>追加した要素の文字色を指定</span>
+  $('#boxes > .box1').css('color', 'blue');
+  // <span style='color: #FF5F17'>クリックで要素を非表示に</span>
+  $('#boxes').click(function(){
+    $('#boxes').hide();
+  });
+});
+</pre>
+            </div>
+         </div>
+      </div>
+      </section>
+      <section><!-- Page  -->
+        <div class="wrap">
+          <h2><strong>2. スタイルの上書き</strong></h2>
+          <h4><strong>2-3. JavaScriptでいろいろやり過ぎている</strong></h4><br>
+          <div class="column code">
+            <p>HTMLやCSSに分割する。</p>
+          </div>
+          <div class="grid vertical-align">
+            <div class="column">
+              <h6 style='color: green'>HTML</h6>
+              <pre>
+&lt;script src='http://semooh.jp/jquery/js/jquery.js'&gt;&lt;/script&gt;
+&lt;script src='sample.js'&gt;&lt;/script&gt;
+<span style='font-weight: bold;color: red'>&lt;link rel='stylesheet' type='text/css' href='sample.css'&gt;</span>
+&lt;div id='boxes'&gt;
+  <span style='font-weight: bold;color: red;'>&lt;div class='box1'&gt;BOX1&lt;/div&gt;</span>
+  <span style='font-weight: bold;color: red;'>&lt;div class='box2'&gt;BOX2&lt;/div&gt;</span>
+  <span style='font-weight: bold;color: red;'>&lt;div class='box3'&gt;BOX3&lt;/div&gt;</span>
+&lt;/div&gt;
+</pre>
+            <div class="column">
+              <h6 style='color: blue'>CSS(sample.css)</h6>
+              <pre>
+<span style='font-weight: bold;color: red'>#boxes > .box1 { color: blue; }</span>
+</pre>
+            </div>
+            </div>
+            <div class="column">
+              <h6 style='color: #FF5F17'>JavaScript(sample.js)</h6>
+              <pre>
+$(function() {
+  <span style='color: lightgray'>// 既存の要素の子要素を作成</span>
+  <span style='color: lightgray'>$('#boxes').append(</span>
+    <span style='color: lightgray'>$('&lt;div&gt;').addClass('box1').text('BOX1'),</span>
+    <span style='color: lightgray'>$('&lt;div&gt;').addClass('box2').text('BOX2'),</span>
+    <span style='color: lightgray'>$('&lt;div&gt;').addClass('box3').text('BOX3')</span>
+  <span style='color: lightgray'>);</span>
+  <span style='color: lightgray'>// 追加した要素の文字色を指定</span>
+  <span style='color: lightgray'>$('#boxes > .box1').css('color', 'blue');</span>
+  // <span style='color: #FF5F17'>クリックで要素を非表示に</span>
+  $('#boxes').click(function(){
+    $('#boxes').hide();
+  });
+});
 </pre>
             </div>
          </div>
