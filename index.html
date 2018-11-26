@@ -37,8 +37,8 @@
           <div class="alignleft" style="margin-left: 25%;">
             <h3><strong>1. CSSの優先度</strong></h3>
             <h3><strong>2. スタイルの上書き</strong></h3>
-            <h3><strong>3. JavaScriptとの付き合い方</strong></h3>
-            <h3><strong>4. CSSの読み込み順</strong></h3>
+            <h3><strong>3. 便利なJavaScriptですが・・・</strong></h3>
+            <h3><strong>4. CSSのパフォーマンスに関すること</strong></h3>
             <h3><strong>5. CSSLintの紹介</strong></h3>
           </div>
         </div>
@@ -283,15 +283,15 @@ $(function() {
           </div>
         </div>
       </section>
-      <section><!-- Page 13 (3. JavaScriptとの付き合い方) -->
+      <section><!-- Page 13 (3. 便利なJavaScriptですが・・・) -->
         <div class="wrap aligncenter bg-green">
-          <h1><strong>3. JavaScriptとの付き合い方</strong></h1>
-          <p class="text-intro">いろいろできるJavaScriptですが・・・</p>
+          <h1><strong>3. 便利なJavaScriptですが・・・</strong></h1>
+          <p class="text-intro"></p>
         </div>
       </section>
       <section><!-- Page 14 (3-1. JavaScriptでいろいろやり過ぎている) -->
         <div class="wrap">
-          <h2><strong>3. JavaScriptとの付き合い方</strong></h2>
+          <h2><strong>3. 便利なJavaScriptですが・・・</strong></h2>
           <h4><strong>3-1. JavaScriptでいろいろやり過ぎている</strong></h4><br>
           <div class="column code">
             <p>JavaScriptを使うと要素を追加/削除したり、スタイルを定義したりすることができます。<br>
@@ -318,11 +318,12 @@ $(function() {
     $('&lt;div&gt;').addClass('box2').text('BOX2'),
     $('&lt;div&gt;').addClass('box3').text('BOX3')
   );
-  // <span class='_css'>追加した要素の文字色を指定</span>
+  // <span class='_css'>追加した要素の文字色を指定/要素を非表示に</span>
   $('#boxes > .box1').css('color', 'blue');
-  // <span class='_js'>クリックで要素を非表示に</span>
+  $('#boxes > .box1').hide();
+  // <span class='_js'>クリックで要素を表示</span>
   $('#boxes').click(function(){
-    $('#boxes').hide();
+    $('#boxes > .box1').show();
   });
 });
 </pre>
@@ -332,10 +333,10 @@ $(function() {
       </section>
       <section><!-- Page 15 (3-1. JavaScriptでいろいろやり過ぎている(改善例)) -->
         <div class="wrap">
-          <h2><strong>3. JavaScriptとの付き合い方</strong></h2>
+          <h2><strong>3. 便利なJavaScriptですが・・・</strong></h2>
           <h4><strong>3-1. JavaScriptでいろいろやり過ぎている(改善例)</strong></h4><br>
           <div class="column code">
-            <p><span class='_html'>構造</span>に関することを<span class='_html'>HTML</span>、<span class='_css'>見た目</span>に関することを<span class='_css'>CSS</span>に移してみました。<br>
+            <p><span class='_html'>構造</span>に関することを<span class='_html'>HTML</span>、<span class='_css'>見た目</span>に関することを<span class='_css'>CSS</span>に移しました。<br>
             このようにすることで要素を追加したり、スタイルを変更する場合でもどこを編集すれば良いか<span class='_red'>予測しやすくなります</span>。</p>
           </div>
           <div class="grid vertical-align">
@@ -354,7 +355,10 @@ $(function() {
             <div class="column">
               <h6 class='_css'>CSS(sample.css)</h6>
               <pre>
-<span class='_bold _red'>#boxes > .box1 { color: blue; }</span>
+<span class='_bold _red'>#boxes > .box1 {
+  color: blue;
+  display: none;
+}</span>
 </pre>
             </div>
             </div>
@@ -368,11 +372,12 @@ $(function() {
     <span class='_gray'>$('&lt;div&gt;').addClass('box2').text('BOX2'),</span>
     <span class='_gray'>$('&lt;div&gt;').addClass('box3').text('BOX3')</span>
   <span class='_gray'>);</span>
-  <span class='_gray'>// 追加した要素の文字色を指定</span>
+  <span class='_gray'>// 追加した要素の文字色を指定/要素を非表示に</span>
   <span class='_gray'>$('#boxes > .box1').css('color', 'blue');</span>
-  // <span class='_js'>クリックで要素を非表示に</span>
+  <span class='_gray'>$('#boxes > .box1').hide();</span>
+  // <span class='_js'>クリックで要素を表示</span>
   $('#boxes').click(function(){
-    $('#boxes').hide();
+    $('#boxes > .box1').show();
   });
 });
 </pre>
@@ -380,48 +385,17 @@ $(function() {
           </div>
         </div>
       </section>
-      <section><!-- Page 16 (3-2. JavaScriptでid/classなどを追加/削除する時の注意点) ここから-->
-        <div class="wrap">
-          <h2><strong>3. JavaScriptとの付き合い方</strong></h2>
-          <h4><strong>3-2. JavaScriptで要素を追加/削除する時の注意点</strong></h4><br>
-          <div class="column code">
-            <p>動的な制御が必要なところだけJavaScriptで処理するようにする。(display: noneの例)<br>
-            classをループ処理で作っててgrepで引っかからない件</p>
-          </div>
-          <div class="grid vertical-align">
-            <div class="column">
-              <h6 class='_html'>HTML</h6>
-              <pre>
-</pre>
-            <div class="column">
-              <h6 class='_css'>CSS(sample.css)</h6>
-              <pre>
-</pre>
-            </div>
-            </div>
-            <div class="column">
-              <h6 class='_js'>JavaScript(sample.js)</h6>
-              <pre>
-</pre>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section><!-- Page XX (4. CSSの読み込み順) -->
+      <section><!-- Page 16 (4. CSSのパフォーマンスに関すること) -->
         <div class="wrap aligncenter bg-green">
-          <h1><strong>4. CSSの読み込み順</strong></h1>
-          <p class="text-intro"></p>
+          <h1><strong>4. CSSのパフォーマンスに関すること</strong></h1>
+          <p class="text-intro">CSSのパフォーマンスを考えながら書いていますか？<br>
+          パフォーマンス下げるような書き方をしているかもしれません</p>
         </div>
       </section>
-      <!--
-        CSSは原則上から  <style>タグ VS css　複数のcssファイル
-        セレクタのロードは右から左に なのでパフォーマンスに関わってくる
-        @importとか？
-      -->
-      <section><!-- Page  -->
+      <section><!-- Page 17 (4-1. CSSのセレクタにidを使うと速いって本当？) まだ-->
         <div class="wrap">
-          <h2><strong>パフォーマンスに関すること</strong></h2>
-          <h4><strong>セレクタにidを使うと速いって本当？</strong></h4><br>
+          <h2><strong>4. パフォーマンスに関すること</strong></h2>
+          <h4><strong>4-1. CSSのセレクタにidを使うと速いって本当？</strong></h4><br>
           <div class="column code">
             <p></p>
           </div>
@@ -439,10 +413,10 @@ $(function() {
          </div>
       </div>
       </section>
-      <section><!-- Page  -->
+      <section><!-- Page 18 (4-2. ) まだ-->
         <div class="wrap">
-          <h2><strong>Javascriptでのスタイルの制御</strong></h2>
-          <h4><strong></strong></h4><br>
+          <h2><strong>4. CSSのパフォーマンスに関すること</strong></h2>
+          <h4><strong>4-2. @importとか？</strong></h4><br>
           <div class="column code">
             <p></p>
           </div>
@@ -460,76 +434,77 @@ $(function() {
          </div>
       </div>
       </section>
-        <!--
-        <section>
-          <div class="wrap size-50 aligncenter">
-            <h2><strong>CSSLintとは？</strong></h2>
-            <p class="text-intro"><a href="https://github.com/CSSLint/csslint" title="CSSLint">https://github.com/CSSLint/csslint</a></p>
-            <div class="bg-white shadow">
-              <ul class="flexblock reasons">
-                <li>
-                  <h2>その名の通り、CSSのLinterです</h2>
-                  <div>CSSに問題点ないか自動でチェックしてくれるツールです。</div>
-                  <div>CSSLintにはいくつかルールがあり「この書き方はちょっとイケてない・・・」という点を警告してくれます。</div>
-                </li>
-                <li>
-                  <h2>簡単に実行できます</h2>
-                  <p>
-                    <pre>$ npm install -g csslint # CSSLintのインストール<br>$ csslint sample.css</pre>
-                  </p>
-                  <div>ブラウザ上でも実行可能です。<a href="http://csslint.net/" title="CSSLint">http://csslint.net/</a></div>
-                </li>
-              </ul>
+      <section><!-- Page 19 (5. CSSLintの紹介) -->
+        <div class="wrap aligncenter bg-green">
+          <h1><strong>5. CSSLintの紹介</strong></h1>
+          <p class="text-intro">「CSSを書く上で気をつけておいた方が良いポイント」を自動で検証してくれる<br>
+          <span class='_bold'>CSSLint</span>というツールを紹介します。</p>
+        </div>
+      </section>
+      <section><!-- Page 20 (5-1. CSSLintとは？) -->
+        <div class="wrap">
+          <h2><strong>5. CSSLintの紹介</strong></h2>
+          <h4><strong>5-1. CSSLintとは？</strong></h4>
+          <div class="column code">
+            <p><a href="https://github.com/CSSLint/csslint" title="CSSLint">https://github.com/CSSLint/csslint</a><br>
+            その名の通りCSSのLinterで、CSSに問題点ないか自動でチェックしてくれるツールです。<br>
+            CSSLintにはいくつかルールがあり「この書き方はちょっとイケてない・・・」という点を警告してくれます。<br>
+            ブラウザ/CLIのどちらも提供されていて、簡単に導入/実行できます。<br>
+            <h6>ブラウザ版</h6><br>
+            <a href="http://csslint.net/" title="CSSLint">http://csslint.net/</a>
+            <br><br>
+            <h6>CLI版</h6><br>
+            <pre>$ npm install -g csslint # CSSLintのインストール<br>$ csslint sample.css     # CSSLintの実行</pre><br><br></p>
+          </div>
+        </div>
+      </section>
+      <section><!-- Page 21 (5-2. ブラウザ版での実行) -->
+        <div class="wrap">
+          <h2><strong>5. CSSLintの紹介</strong></h2>
+          <h4><strong>5-2. ブラウザ版での実行</strong></h4>
+          <div class="grid vertical-align">
+            <div class="column code">
+              <p>以下は、<span class='_css'>「Disallow !important」</span>のルールに違反している場合の実行結果です。<br>
+              ルールの有効/無効はチェックボックスで選択できます。</p>
+            </div>
+            <div class="column">
+              <img style="width: 412px; height: 559px;" src="static/images/browser_result1.png">
             </div>
           </div>
-        </section>
-        <section>
-            <div class="wrap">
-              <h2><strong>CSSLint</strong></h2>
-              <ul class="flexblock gallery">
-                <li>
-                  <figure>
-                    <img style="height: 700px;" alt="Thumbnail Why WebSlides?" src="static/images/browser_result1.png">
-                    <figcaption>
-                      <h2>ブラウザ版での実行</h2>
-                      <h2>ルールの有効無効はチェックボックスで選択可能</h2>
-                    </figcaption>
-                  </figure>
-                </li>
-                <li>
-                    <figure>
-                      <img alt="Thumbnail Why WebSlides?" src="static/images/browser_result2.png">
-                      <figcaption>
-                        <h2>Disallow !importantのルールに違反</h2>
-                      </figcaption>
-                    </figure>
-                  </li>
-              </ul>
-            </div>
-        </section>
-        -->
-
-      </article>
-      <!-- end article -->
-    </main>
-    <!-- end main -->
-
-   <!-- A global footer
-
-     <footer role="contentinfo">
-      <div class="wrap">
-        <p>An <a href="https://github.com/webslides/webslides">open source solution</a>, by <a href="https://twitter.com/webslides">@webslides</a>.</p>
-      </div>
-    </footer>  -->
-
-    <!-- Required -->
-    <script src="static/js/webslides.js"></script>
-    <script>
-      window.ws = new WebSlides();
-    </script>
-
-    <!-- OPTIONAL - svg-icons.js (fontastic.me - Font Awesome as svg icons) -->
-    <script defer src="static/js/svg-icons.js"></script>
-
-  </body>
+        </div>
+      </section>
+      <section><!-- Page 22 (5-2. ブラウザ版での実行(実行結果)) -->
+        <div class="wrap">
+          <h2><strong>5. CSSLintの紹介</strong></h2>
+          <h4><strong>5-2. ブラウザ版での実行(実行結果)</strong></h4>
+          <br>
+          <img style="width: 940px; height: 568px;" src="static/images/browser_result2.png">
+        </div>
+      </section>
+      <section><!-- Page 23 (5-3. CLI版での実行) ここから-->
+        <div class="wrap">
+          <h2><strong>5. CSSLintの紹介</strong></h2>
+          <h4><strong>5-3. CLI版での実行</strong></h4>
+          <div class="column code">
+            <p>以下は、<span class='_css'>「Disallow !important」</span>のルールに違反している場合の実行結果です。<br>
+            ルールの有効/無効はチェックボックスで選択できます。</p>
+          </div>
+          <br>
+          <img style="height: 60%; margin-right: 15px;" src="static/images/browser_result1.png">
+          <img style="height: 60%;" src="static/images/browser_result2.png">
+        </div>
+      </section>
+    </article>
+  </main>
+  <!--
+  <footer role="contentinfo">
+    <div class="wrap">
+      <p>An <a href="https://github.com/webslides/webslides">open source solution</a>, by <a href="https://twitter.com/webslides">@webslides</a>.</p>
+    </div>
+  </footer>
+  -->
+  <script src="static/js/webslides.js"></script>
+  <script>window.ws = new WebSlides();</script>
+  <script defer src="static/js/svg-icons.js"></script>
+</body>
 </html>
