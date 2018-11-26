@@ -449,6 +449,7 @@ $(function() {
             <p><a href="https://github.com/CSSLint/csslint" title="CSSLint">https://github.com/CSSLint/csslint</a><br>
             その名の通りCSSのLinterで、CSSに問題点ないか自動でチェックしてくれるツールです。<br>
             CSSLintにはいくつかルールがあり「この書き方はちょっとイケてない・・・」という点を警告してくれます。<br>
+            ルールについては <a href='https://qiita.com/oh_rusty_nail/items/12e5783a9630a6905b1e'>CSSLintの全32個のルールをサンプルコードを書きながら解説しました</a> に詳しく書いています。<br>
             ブラウザ/CLIのどちらも提供されていて、簡単に導入/実行できます。<br>
             <h6>ブラウザ版</h6><br>
             <a href="http://csslint.net/" title="CSSLint">http://csslint.net/</a>
@@ -465,7 +466,7 @@ $(function() {
           <div class="grid vertical-align">
             <div class="column code">
               <p>以下は、<span class='_css'>「Disallow !important」</span>のルールに違反している場合の実行結果です。<br>
-              ルールの有効/無効はチェックボックスで選択できます。</p>
+              チェックボックスのチェックを外すとルールを除外できます。</p>
             </div>
             <div class="column">
               <img style="width: 412px; height: 559px;" src="static/images/browser_result1.png">
@@ -481,19 +482,32 @@ $(function() {
           <img style="width: 940px; height: 568px;" src="static/images/browser_result2.png">
         </div>
       </section>
-      <section><!-- Page 23 (5-3. CLI版での実行) ここから-->
+      <section><!-- Page 23 (5-3. CLI版での実行) -->
         <div class="wrap">
           <h2><strong>5. CSSLintの紹介</strong></h2>
           <h4><strong>5-3. CLI版での実行</strong></h4>
           <div class="column code">
-            <p>以下は、<span class='_css'>「Disallow !important」</span>のルールに違反している場合の実行結果です。<br>
-            ルールの有効/無効はチェックボックスで選択できます。</p>
+            <p>CLI版で実行した結果です。同様に<span class='_css'>「Disallow !important」</span>のルールに違反している場合の実行結果です。<br>
+            --ignoreオプションを付けて実行するとルールが除外されます。
           </div>
           <br>
-          <img style="height: 60%; margin-right: 15px;" src="static/images/browser_result1.png">
-          <img style="height: 60%;" src="static/images/browser_result2.png">
+          <pre>
+$ csslint sample.css
+csslint: There is 1 problem in /Users/markun/sample.css.
+
+sample.css
+1: warning at line 2, col 3
+Use of !important
+  color: red !important;
+
+
+
+$ csslint sample.css --ignore=important
+csslint: No errors in /Users/markun/sample.css.
+</pre>
         </div>
       </section>
+      <!--  Page 24 (5-4 ルールを一部紹介)-->>
     </article>
   </main>
   <!--
