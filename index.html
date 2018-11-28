@@ -38,7 +38,7 @@
             <h3><strong>1. CSSの優先度</strong></h3>
             <h3><strong>2. スタイルの上書き</strong></h3>
             <h3><strong>3. 便利なJavaScriptですが・・・</strong></h3>
-            <h3><strong>4. CSSのパフォーマンスに関すること</strong></h3>
+            <h3><strong>4. パフォーマンスを考えたCSSの書き方</strong></h3>
             <h3><strong>5. CSSLintの紹介</strong></h3>
           </div>
         </div>
@@ -385,29 +385,95 @@ $(function() {
           </div>
         </div>
       </section>
-      <section><!-- Page 16 (4. CSSのパフォーマンスに関すること) -->
+      <section><!-- Page 16 (4. パフォーマンスを考えたCSSの書き方) -->
         <div class="wrap aligncenter bg-green">
-          <h1><strong>4. CSSのパフォーマンスに関すること</strong></h1>
-          <p class="text-intro">CSSのパフォーマンスを考えながら書いていますか？<br>
-          パフォーマンス下げるような書き方をしているかもしれません</p>
+          <h1><strong>4. パフォーマンスを考えたCSSの書き方</strong></h1>
+          <p class="text-intro">CSSのパフォーマンスを考えながら書いていますか？</p>
         </div>
       </section>
-      <section><!-- Page 17 (4-1. CSSのセレクタにidを使うと速いって本当？) まだ-->
+      <section><!-- Page 17 (4-1. CSSのセレクタにidを使うと速いって本当？) -->
         <div class="wrap">
-          <h2><strong>4. パフォーマンスに関すること</strong></h2>
+          <h2><strong>4. パフォーマンスを考えたCSSの書き方</strong></h2>
           <h4><strong>4-1. CSSのセレクタにidを使うと速いって本当？</strong></h4><br>
           <div class="column code">
-            <p></p>
+            <p>CSSのセレクタに<span class='_bold'>id</span>を使うとレンダリング速度が速くなるというのは知られていますが、<br>
+            それは<span class='_bold'>idをキーセレクタ(セレクタの右端)に使うとき</span>に限って言えることです。<br>
+            <span class='_bold _red'>CSSセレクタは右から左に検索される</span>ため、以下のようにidを使うことでむしろ遅くなることもあります。<br>
+            このように、十分に要素が特定できるセレクタの場合に親要素を指定したり、要素名を付けるとパフォーマンスの低下を招きます。</p>
           </div>
           <div class="grid vertical-align">
             <div class="column">
-              <h6>HTML</h6>
+              <h6 class='_html'>HTML</h6>
               <pre>
-              </pre>
+&lt;div id='boxes'&gt;
+  &lt;div class='box'&gt;BOX1&lt;/div&gt;
+  &lt;div class='box'&gt;BOX2&lt;/div&gt;
+  &lt;div class='box'&gt;BOX3&lt;/div&gt;
+&lt;/div&gt;
+</pre>
             </div>
             <div class="column">
-              <h6>CSS</h6>
+              <h6 class='_css'>CSS</h6>
               <pre>
+/*
+1. クラスが"box"の要素を探す
+<span class='_red'>2. その親要素のidが"boxes"であるか調べる(現在の構造であれば余計な処理)</span>
+*/
+#boxes > .box { color: blue; }
+
+/*
+1. クラスが"box"の要素を探す
+*/
+.box { color: blue;}
+              </pre>
+            </div>
+         </div>
+      </div>
+      </section>
+      <section><!-- Page 18 (4-2. パフォーマンスを意識したCSSセレクタの書き方) -->
+        <div class="wrap">
+          <h2><strong>4. パフォーマンスを考えたCSSの書き方</strong></h2>
+          <h4><strong>4-2. パフォーマンスを意識したCSSセレクタの書き方</strong></h4><br>
+          <div class="column code">
+            <p>もし、HTMLの中に100個のli要素があった場合、まず全てのli要素を探します。<br>
+            現在のHTMLのツリー構造をそのままli要素まで辿るように指定してみると、非効率な検索をしていることが分かります。<br>
+            該当するli要素に 'navigation-list' というクラスを付けるとCSSのパフォーマンスを上がりますが、HTMLまで手を入れる必要があります。<br>
+            <span class='_red'>idセレクタは、ページに1つしか存在しないため余計な条件は省くべきです。</span></p>
+          </div>
+          <div class="grid vertical-align">
+            <div class="column">
+              <h6 class='_html'>HTML</h6>
+              <pre>
+&lt;div id='wrapper'&gt;
+  &lt;div id='header'&gt;
+    &lt;div id='navigation'&gt;
+      &lt;ul&gt;
+        &lt;li&gt;リスト1&lt;/li&gt;
+        &lt;li&gt;リスト2&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+            </div>
+            <div class="column">
+              <h6 class='_css'>CSS</h6>
+              <pre>
+/*
+1. li要素を探す(100個該当)
+2. 次にツリー構造を辿り、#navigationを探す
+3. 更に、#headerを探す
+4. 更に、#wrapperを探す
+*/
+#wrapper #header #navigation li { color: blue; }
+
+/*
+1. クラスが"navigation-list"の要素を探す
+*/
+.navigation-list { color: blue;}
+
+/* 余計な条件を削除したもの */
+#navigation li { color: blue; }
               </pre>
             </div>
          </div>
@@ -415,7 +481,7 @@ $(function() {
       </section>
       <section><!-- Page 18 (4-2. ) まだ-->
         <div class="wrap">
-          <h2><strong>4. CSSのパフォーマンスに関すること</strong></h2>
+          <h2><strong>4. パフォーマンスを考えたCSSの書き方</strong></h2>
           <h4><strong>4-2. @importとか？</strong></h4><br>
           <div class="column code">
             <p></p>
