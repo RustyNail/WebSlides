@@ -603,7 +603,7 @@ $(function() {
           <h4><strong>5-3. CLI版での実行</strong></h4>
           <div class="column code">
             <p>CLI版で実行した結果です。同様に<span class='_css'>「Disallow !important」</span>のルールに違反している場合の実行結果です。<br>
-            --ignoreオプションを付けて実行するとルールが除外されます。
+            --ignoreオプションを付けて実行するとルールが除外されます。</p>
           </div>
           <br>
           <pre>
@@ -622,7 +622,39 @@ csslint: No errors in /Users/markun/sample.css.
 </pre>
         </div>
       </section>
-      <!--  Page 26 (5-4 ルールを一部紹介)-->>
+      <section><!-- Page 26 (5-4. CSSLintでチェックされること) -->
+        <div class="wrap">
+          <h2><strong>5. CSSLintの紹介</strong></h2>
+          <h4><strong>5-4. CSSLintでチェックされること</strong></h4>
+          <div class="column code">
+            <p>CSSLintのルールは全部で32個あります。<br>
+            ザックリと分類すると以下のような観点でチェックされます。<br>
+            <span class='_bold'>・意図しないスタイルを当てしまいそうな書き方していないか<br>
+            ・保守性や再利用性が考慮されているか<br>
+            ・パフォーマンスに影響を与えるような書き方をしていないか<br>
+            ・各種ブラウザの互換性は取れているか<br/></span>
+            (たとえLintツールを使わなくても)これは知っておいた方が良いと思ったものをいくつか紹介します。</p>
+          </div>
+          <hr>
+          ルールについて詳しく知りたい方はQiita記事をご覧ください。<br>
+          <h4><a href='https://qiita.com/oh_rusty_nail/items/12e5783a9630a6905b1e'>https://qiita.com/oh_rusty_nail/items/12e5783a9630a6905b1e</a></h4>
+        </div>
+      </section>
+      <!-- ここから -->
+      <!-- Page 27 (5-4. CSSLintのルールの紹介 プロパティの書き方) -->
+      <!--
+        プロパティは離してかくな！
+        使えるならばmargin/padding/(background)には一括指定プロパティを使え。ただし初期化に注意
+        アルファベット順で記述
+      -->
+      <!-- Page 28 (5-4. CSSLintのルールの紹介 存在しないプロパティ名や値を指定すると警告) -->
+      <!-- Page 29 (5-4. CSSLintのルールの紹介) セレクタの書き方　-->
+      <!-- 
+        必要もないのに詳細度を高めている div.classなど
+      -->
+      <!-- Page 30 (5-4. CSSLintのルールの紹介) 今の時代floatはね　-->
+      <!-- Page 31 (5-4. CSSLintのルールの紹介) !important　-->
+      <!-- Page 31 (5-4. CSSLintのルールの紹介) オブジェクト思考(classで再利用性)　-->
     </article>
   </main>
   <script src="static/js/webslides.js"></script>
