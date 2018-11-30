@@ -394,7 +394,7 @@ $(function() {
       <section><!-- Page 17 (4-1. CSSのセレクタにidを使うと速いって本当？) -->
         <div class="wrap">
           <h2><strong>4. パフォーマンスを考えたCSSの書き方</strong></h2>
-          <h4><strong>4-1. CSSのセレクタにidを使うと速いって本当？</strong></h4><br>
+          <h4><strong>4-1. CSSのセレクタにidを使うと速い？</strong></h4><br>
           <div class="column code">
             <p>CSSのセレクタに<span class='_bold'>id</span>を使うとレンダリング速度が速くなるというのは知られていますが、<br>
             それは<span class='_bold'>idをキーセレクタ(セレクタの右端)に使うとき</span>に限って言えることです。<br>
@@ -433,7 +433,7 @@ $(function() {
       <section><!-- Page 18 (4-2. パフォーマンスを意識したCSSセレクタの書き方) -->
         <div class="wrap">
           <h2><strong>4. パフォーマンスを考えたCSSの書き方</strong></h2>
-          <h4><strong>4-2. パフォーマンスを意識したCSSセレクタの書き方</strong></h4><br>
+          <h4><strong>4-2. セレクタの指定方法</strong></h4><br>
           <div class="column code">
             <p>もし、HTMLの中に100個のli要素があった場合、まず全てのli要素を探します。<br>
             現在のHTMLのツリー構造をそのままli要素まで辿るように指定してみると、非効率な検索をしていることが分かります。<br>
@@ -479,35 +479,84 @@ $(function() {
          </div>
       </div>
       </section>
-      <section><!-- Page 18 (4-2. ) まだ-->
+      <section><!-- Page 19 (4-3. @importと<link>)-->
         <div class="wrap">
           <h2><strong>4. パフォーマンスを考えたCSSの書き方</strong></h2>
-          <h4><strong>4-2. @importとか？</strong></h4><br>
+          <h4><strong>4-3. @importと&lt;link&gt;</strong></h4><br>
           <div class="column code">
-            <p></p>
+            <p>ロードしているCSSの中に表示しているページでは使わないスタイルのルールまで書いていることはありませんか。<br>
+            適用しないスタイルのルールをロードするとパフォーマンスに影響を与えるだけでなく、保守性も下がります。<br>
+            共通部分を集約したCSSを読み込ませたり、特定の機能にだけ適用するスタイルは切り出すなどCSSの分割を考えることも必要です。<br>
+            <span class='_bold'>@import</span>は分割したCSSファイルを読み込むことができる便利な機能です。<br>
+            但し、CSSファイルの最上部に書かれていないと機能しません。<br>
+            以下のようにどちらでもCSSファイルの読み込みはできますが、パフォーマンスに少し違いがあるため説明します。</p>
           </div>
           <div class="grid vertical-align">
             <div class="column">
-              <h6>HTML</h6>
-              <pre>
-              </pre>
+              <div class="column">
+                <h6 class='_html'>HTML</h6>
+                <pre>
+  &lt;link type="text/css" rel="stylesheet" href="sample.css"&gt;
+  &lt;link type="text/css" rel="stylesheet" href="sample2.css"&gt;
+  &lt;link type="text/css" rel="stylesheet" href="sample3.css"&gt;
+  </pre>
+              </div>
+              <div class="column">
+                <h6 class='_css'>CSS(sample.css)</h6>
+                <pre>
+  @import url('sample2.css');
+  @import url('sample3.css');
+  </pre>
+              </div>
             </div>
-            <div class="column">
-              <h6>CSS</h6>
-              <pre>
-              </pre>
-            </div>
-         </div>
+          </div>
+        </div>
       </div>
       </section>
-      <section><!-- Page 19 (5. CSSLintの紹介) -->
+      <section><!-- Page 20 (4-3. @importと<link>)-->
+        <div class="wrap">
+          <h2><strong>4. パフォーマンスを考えたCSSの書き方</strong></h2>
+          <h4><strong>4-3. @importと&lt;link&gt;</strong></h4><br>
+          <div class="column code">
+            <p>CSS側に@importを使って書くと、「sample.css」が @import で書かれた「sample2.css」「sample3.css」を読み込みます。<br>
+            ただ、<span class='_bold'>並列にダウンロードが走らないため待ちができてロードが遅く</span>なります。</p>
+          </div>
+          <div class="grid vertical-align">
+            <div class="column">
+              <h6 class='_css'>CSS(sample.css)</h6>
+              <pre>
+@import url('sample2.css');
+@import url('sample3.css');
+</pre>
+            </div>
+          </div>
+          <hr/>
+          <div class="column code">
+            <p>HTML側に&lt;link&gt;タグを使って書くと、ファイルを同時に読み込みすることができます。<br>
+            すなわち、最初のCSSファイルの読み込み完了を待たずに次のファイルをリクエストできるため、<br>
+            回線をより効率よく使ってダウンロードができます。</p>
+          </div>
+          <div class="grid vertical-align">
+            <div class="column">
+              <h6 class='_html'>HTML</h6>
+              <pre>
+&lt;link type="text/css" rel="stylesheet" href="sample.css"&gt;
+&lt;link type="text/css" rel="stylesheet" href="sample2.css"&gt;
+&lt;link type="text/css" rel="stylesheet" href="sample3.css"&gt;
+</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      </section>
+      <section><!-- Page 21 (5. CSSLintの紹介) -->
         <div class="wrap aligncenter bg-green">
           <h1><strong>5. CSSLintの紹介</strong></h1>
           <p class="text-intro">「CSSを書く上で気をつけておいた方が良いポイント」を自動で検証してくれる<br>
           <span class='_bold'>CSSLint</span>というツールを紹介します。</p>
         </div>
       </section>
-      <section><!-- Page 20 (5-1. CSSLintとは？) -->
+      <section><!-- Page 22 (5-1. CSSLintとは？) -->
         <div class="wrap">
           <h2><strong>5. CSSLintの紹介</strong></h2>
           <h4><strong>5-1. CSSLintとは？</strong></h4>
@@ -525,7 +574,7 @@ $(function() {
           </div>
         </div>
       </section>
-      <section><!-- Page 21 (5-2. ブラウザ版での実行) -->
+      <section><!-- Page 23 (5-2. ブラウザ版での実行) -->
         <div class="wrap">
           <h2><strong>5. CSSLintの紹介</strong></h2>
           <h4><strong>5-2. ブラウザ版での実行</strong></h4>
@@ -540,7 +589,7 @@ $(function() {
           </div>
         </div>
       </section>
-      <section><!-- Page 22 (5-2. ブラウザ版での実行(実行結果)) -->
+      <section><!-- Page 24 (5-2. ブラウザ版での実行(実行結果)) -->
         <div class="wrap">
           <h2><strong>5. CSSLintの紹介</strong></h2>
           <h4><strong>5-2. ブラウザ版での実行(実行結果)</strong></h4>
@@ -548,7 +597,7 @@ $(function() {
           <img style="width: 940px; height: 568px;" src="static/images/browser_result2.png">
         </div>
       </section>
-      <section><!-- Page 23 (5-3. CLI版での実行) -->
+      <section><!-- Page 25 (5-3. CLI版での実行) -->
         <div class="wrap">
           <h2><strong>5. CSSLintの紹介</strong></h2>
           <h4><strong>5-3. CLI版での実行</strong></h4>
@@ -573,16 +622,9 @@ csslint: No errors in /Users/markun/sample.css.
 </pre>
         </div>
       </section>
-      <!--  Page 24 (5-4 ルールを一部紹介)-->>
+      <!--  Page 26 (5-4 ルールを一部紹介)-->>
     </article>
   </main>
-  <!--
-  <footer role="contentinfo">
-    <div class="wrap">
-      <p>An <a href="https://github.com/webslides/webslides">open source solution</a>, by <a href="https://twitter.com/webslides">@webslides</a>.</p>
-    </div>
-  </footer>
-  -->
   <script src="static/js/webslides.js"></script>
   <script>window.ws = new WebSlides();</script>
   <script defer src="static/js/svg-icons.js"></script>
