@@ -841,19 +841,30 @@ csslint: No errors in /Users/markun/sample.css.
           <h2><strong>5. CSSLintの紹介</strong></h2>
           <h4><strong>5-8. 再利用を考えた設計</strong></h4><br>
           <div class="column code">
-            <p></p>
-          </div>
-          <div class="grid vertical-align">
-            <div class="column">
-              <h6 class='_html'>HTML</h6>
-              <pre>
-</pre>
-            </div>
+            <p>CSSLintではidをセレクタに使うと警告が出ます。<br>
+            これは少々厳しすぎる気もしますが、idで定義してしまうとそのスタイルが再利用ができないためです。<br>
+            例えば、OOCSS(オブジェクト思考CSS)のBEMで設計している場合、全てをクラスとして扱うため当然再利用ができます。<br>
+            再利用しやすいようにスタイルを定義するのもOOCSSの特徴です。</p>
           </div>
           <div class="grid vertical-align">
             <div class="column">
               <h6 class='_css'>CSS</h6>
               <pre>
+<span class='_bg_lightred'>/* 同様なスタイルを持つ#box2, #box3があとで追加されてもCSSを修正しないと再利用できない*/</span>
+#box1 {
+  width: 400px;
+  height: 200px;
+  background: blue;
+}
+<span class='_bg_lightblue'>/* #box2, #box3があとで追加されてもクラス付与するだけで再利用可能 */</span>
+.box {
+  width: 400px;
+  height: 200px;
+}
+<span class='_bg_lightblue'>/* #box1以外のところでもクラス付与するだけで再利用可能 */</span>
+.blue {
+  background: blue;
+}
 </pre>
             </div>
           </div>
@@ -864,21 +875,20 @@ csslint: No errors in /Users/markun/sample.css.
           <h2><strong>5. CSSLintの紹介</strong></h2>
           <h4><strong>5-9. !importantの使い方</strong></h4><br>
           <div class="column code">
-            <p></p>
-          </div>
-          <div class="grid vertical-align">
-            <div class="column">
-              <h6 class='_html'>HTML</h6>
-              <pre>
-</pre>
-            </div>
+            <p>繰り返しになりますが、<span class='_bold _red'>!importantはスタイルを強制的に当てる最終手段</span>です。<br>
+            スタイルの読み込み順や詳細度を意識していれば、!importantを付けないとスタイルが当たらないというケースは少ないです。<br>
+            逆に!importantを付けてしまうと、詳細度や上書き、適用順番などを考えていてもそれらのルールが無視されてしまうため、<br>
+            リリース対象のコードには含めない方が良いですが、使うのに適した場面もあります。<br>
+            最終奥義であることを逆手にとり、書いたスタイルが絶対に効くことを肯定するためのデバッグとして使うのは手っ取り早くて良いと思います。<br>
+            仮に、これで効かなければスタイルを当てる対象のセレクタの指定、またはプロパティの指定方法が間違っていることに気付けます。</p>
           </div>
           <div class="grid vertical-align">
             <div class="column">
               <h6 class='_css'>CSS</h6>
               <pre>
-</pre>
-            </div>
+.box {
+  color: red <span class='_red'>!important</span>;
+}
           </div>
         </div>
       </section>
