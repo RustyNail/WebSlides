@@ -18,6 +18,8 @@
 ._red { color: red; }
 ._gray { color: lightgray; }
 ._bold { font-weight: bold; }
+._bg_lightblue { background-color: lightblue; padding: 2px; }
+._bg_lightred { background-color: lightpink; padding: 2px; }
   </style>
 </head>
 <body>
@@ -640,21 +642,275 @@ csslint: No errors in /Users/markun/sample.css.
           <h4><a href='https://qiita.com/oh_rusty_nail/items/12e5783a9630a6905b1e'>https://qiita.com/oh_rusty_nail/items/12e5783a9630a6905b1e</a></h4>
         </div>
       </section>
-      <!-- ここから -->
-      <!-- Page 27 (5-4. CSSLintのルールの紹介 プロパティの書き方) -->
-      <!--
-        プロパティは離してかくな！
-        使えるならばmargin/padding/(background)には一括指定プロパティを使え。ただし初期化に注意
-        アルファベット順で記述
-      -->
-      <!-- Page 28 (5-4. CSSLintのルールの紹介 存在しないプロパティ名や値を指定すると警告) -->
-      <!-- Page 29 (5-4. CSSLintのルールの紹介) セレクタの書き方　-->
-      <!-- 
-        必要もないのに詳細度を高めている div.classなど
-      -->
-      <!-- Page 30 (5-4. CSSLintのルールの紹介) 今の時代floatはね　-->
-      <!-- Page 31 (5-4. CSSLintのルールの紹介) !important　-->
-      <!-- Page 31 (5-4. CSSLintのルールの紹介) オブジェクト思考(classで再利用性)　-->
+      <section><!-- Page 27 (5-5. プロパティの書き方のチェック) -->
+        <div class="wrap">
+          <h2><strong>5. CSSLintの紹介</strong></h2>
+          <h4><strong>5-5. プロパティの書き方のチェック</strong></h4><br>
+          <div class="column code">
+            <p>プロパティの書き方には次のようなルールがあります。<br>
+            <span class='_bold'>1. 同じプロパティを書くときは離して書かないようにした方が良い<br>
+            2. ショートハンドで書けるものはショートハンドで書いた方が良い。<br>
+            3. 複数のプロパティを書くときはアルファベット順で書いた方が良い</span></p>
+          </div>
+        </div>
+      </section>
+      <section><!-- Page 28 (5-5. プロパティの書き方のチェック(同じプロパティを書くときは離して書かない)) -->
+        <div class="wrap">
+          <h2><strong>5. CSSLintの紹介</strong></h2>
+          <h4><strong>5-5. プロパティの書き方のチェック(同じプロパティを書くときは離して書かない)</strong></h4><br>
+          <div class="column code">
+            <p>意図的に同じプロパティを定義するケースはありますが、離して書いてしまうと沢山のプロパティが定義されている場合、<br>
+            意図したものであるのかわからなくなったり修正を加える時に一部が漏れてしまったりするかもしれません。</p>
+          </div>
+          <br>
+          <div class="column">
+            <h6 class='_css'>CSS</h6>
+            <pre>
+<span class='_bg_lightred'>/* 同じプロパティを離して定義[BAD] */</span>
+.box {
+  background: black;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+<span class='_bg_lightblue'>/* 同じプロパティを続けて定義[GOOD] */</span>
+.box {
+  background: black;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+</pre>
+          </div>
+        </div>
+      </section>
+      <section><!-- Page 29 (5-5. プロパティの書き方のチェック(ショートハンドで書けるものはショートハンドで書く)) -->
+        <div class="wrap">
+          <h2><strong>5. CSSLintの紹介</strong></h2>
+          <h4><strong>5-5. プロパティの書き方のチェック(ショートハンドで書けるものはショートハンドで書く)</strong></h4><br>
+          <div class="column code">
+            <p>複数のプロパティを1つずつ書くよりもショートハンドで書けるものはそう書いたほうがコードもスッキリします。<br>
+            例えば、marginの場合、<span class='_bold'>上下左右のプロパティがそれぞれ個別で書いている場合</span>、ショートハンドで書くことができます。<br>
+            但し、上下左右のプロパティを指定しない場合は<span class='_bold'>初期化</span>してしまうことに注意しなければなりません。</p>
+          </div>
+          <br>
+          <div class="column">
+            <h6>marginのショートハンドの書き方</h6>
+            <pre>
+値を1つ指定した場合： 指定した値が[上下左右]のマージンになります。
+値を2つ指定した場合： 記述した順に[上下][左右]のマージンになります。
+値を3つ指定した場合： 記述した順に[上][左右][下]のマージンになります。
+値を4つ指定した場合： 記述した順に[上][右][下][左]のマージンになります。
+</pre>
+            <h6>初期化と上書きについて</h6>
+            <pre>
+<span class='_bg_lightred'>/* 初期化した後に上書きしているケース[BAD] */</span>
+.box { /* padding: 0 10px; と書けば良い*/
+  padding: 0; /* padding-(top|bottom|left|right)を0にしている */
+  padding-left: 10px;
+  padding-right: 10px;
+}
+</pre>
+          </div>
+        </div>
+      </section>
+      <section><!-- Page 30 (5-5. プロパティの書き方のチェック(ショートハンドで書けるものはショートハンドで書く)) -->
+        <div class="wrap">
+          <h2><strong>5. CSSLintの紹介</strong></h2>
+          <h4><strong>5-5. プロパティの書き方のチェック(ショートハンドで書けるものはショートハンドで書く)</strong></h4><br>
+          <div class="column">
+            <h6 class='_css'>CSS</h6>
+            <pre>
+<span class='_bg_lightred'>/* ショートハンドで書けるが書いていないケースその1[BAD] */</span>
+.box { /* margin: 10px; と書ける */
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+<span class='_bg_lightred'>/* ショートハンドで書けるが書いていないケースその2[BAD] */</span>
+.box { /* padding: 20px 10px; と書ける */
+  padding-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 20px;
+}
+<span class='_bg_lightblue'>/* ショートハンドで書いている[GOOD] */</span>
+.box {
+  margin: 10px 20px 30px 40px;
+}
+<span class='_bg_lightblue'>/* 必要なものだけ個別で指定(ショートハンドでは書けない)[GOOD] */</span>
+.box { /* padding: 10px; と書くとleft/bottomも10pxで初期化されるためショートハンドでは書けない */
+  padding-right: 10px;
+  padding-top: 10px;
+}
+</pre>
+          </div>
+        </div>
+      </section>
+      <section><!-- Page 31 (5-5. プロパティの書き方のチェック(アルファベット順で書く)) -->
+        <div class="wrap">
+          <h2><strong>5. CSSLintの紹介</strong></h2>
+          <h4><strong>5-5. プロパティの書き方のチェック(アルファベット順で書く)</strong></h4><br>
+          <div class="column code">
+            <p>プロパティが沢山定義されている時にうっかり既に書かれているものを見落として、<br>
+            新しく追加した結果、上書きしてゴミを残してしまうこともあるかもしれません。<br>
+            アルファベット順に書いてそれを起こしにくくするというアプローチです。<br>
+            ただ、一方でwidthとheightのようなセットで続けて書いた方が見やすいという視点もあるので向き不向きがあると思います。</p>
+          </div>
+          <br>
+          <div class="column">
+            <h6 class='_css'>CSS</h6>
+            <pre>
+.box {
+  margin: 5px;
+  padding: 0;
+  <span class='_bold _red'>font-size: 20px;</span>
+  font-weight: bold;
+  width: 400px;
+  height: 1000px;
+  color: blue;
+  background-color: lightblue;
+   :
+   :
+  <span class='_bold _red'>font-size: 16px; /* この行を追加(font-size: 20px;を上書きしてしまっている) */</span>
+}
+</pre>
+          </div>
+        </div>
+      </section>
+      <section><!-- Page 32 (5-6. 不正なプロパティ名や値のチェック) -->
+        <div class="wrap">
+          <h2><strong>5. CSSLintの紹介</strong></h2>
+          <h4><strong>5-6. 不正なプロパティ名や値のチェック</strong></h4><br>
+          <div class="column code">
+            <p>存在しないプロパティを指定したり、値が間違っていて意図したスタイルが当たらないという経験はありませんか？<br>
+            意外とtypoは気付かないもので、CSSの場合は<span class='_blue _bold'>「セレクタ自体の指定が違う？セレクタの詳細度が他に高いものがある？」</span><br>
+            などと考えられる候補はいくつかあるためハマることもあります。<br>
+            それを自動でチェックしてくれるtypoチェッカーです。<br>
+            以下は、プロパティと値がそれぞれ間違っているため、スタイルが適用されません。</p>
+          </div>
+          <div class="grid vertical-align">
+            <div class="column">
+              <h6 class='_css'>CSS</h6>
+              <pre>
+.box {
+  color: glay;
+  pading: 10px;
+}
+</pre>
+            </div>
+         </div>
+      </div>
+      </section>
+      <section><!-- Page 33 (5-7. セレクタの書き方のチェック) -->
+        <div class="wrap">
+          <h2><strong>5. CSSLintの紹介</strong></h2>
+          <h4><strong>5-7. セレクタの書き方のチェック</strong></h4><br>
+          <div class="column code">
+            <p>セレクタはスタイルを適用したい要素が特定できれば、必要以上に詳細度を高める必要はありません。<br>
+            再利用しにくくなったり、新しく定義したスタイルが詳細度の都合効かないということも起きる可能性があります。<br>
+            以下のコードであれば、親要素の指定や対象要素の要素名の指定は不要です。</p>
+          </div>
+          <div class="grid vertical-align">
+            <div class="column">
+              <h6 class='_html'>HTML</h6>
+              <pre>
+&lt;div&gt;
+  &lt;ul class='list__items'&gt;
+    &lt;li class='list__item'&gt;リスト1&lt;/li&gt;
+    &lt;li class='list__item'&gt;リスト2&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+            </div>
+          </div>
+          <div class="grid vertical-align">
+            <div class="column">
+              <h6 class='_css'>CSS</h6>
+              <pre>
+<span class='_red'>div ui.list__items li</span>.list__item { /* .list__itemで十分 */
+  color: blue;
+}
+</pre>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section><!-- Page 34 (5-8. 再利用を考えた設計) -->
+        <div class="wrap">
+          <h2><strong>5. CSSLintの紹介</strong></h2>
+          <h4><strong>5-8. 再利用を考えた設計</strong></h4><br>
+          <div class="column code">
+            <p></p>
+          </div>
+          <div class="grid vertical-align">
+            <div class="column">
+              <h6 class='_html'>HTML</h6>
+              <pre>
+</pre>
+            </div>
+          </div>
+          <div class="grid vertical-align">
+            <div class="column">
+              <h6 class='_css'>CSS</h6>
+              <pre>
+</pre>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section><!-- Page 35 (5-9. !importantの使い方) -->
+        <div class="wrap">
+          <h2><strong>5. CSSLintの紹介</strong></h2>
+          <h4><strong>5-9. !importantの使い方</strong></h4><br>
+          <div class="column code">
+            <p></p>
+          </div>
+          <div class="grid vertical-align">
+            <div class="column">
+              <h6 class='_html'>HTML</h6>
+              <pre>
+</pre>
+            </div>
+          </div>
+          <div class="grid vertical-align">
+            <div class="column">
+              <h6 class='_css'>CSS</h6>
+              <pre>
+</pre>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section><!-- Page 36 (5-10. float使うよりはflexboxを) -->
+        <div class="wrap">
+          <h2><strong>5. CSSLintの紹介</strong></h2>
+          <h4><strong>5-10. float使うよりはflexboxを</strong></h4><br>
+          <div class="column code">
+            <p></p>
+          </div>
+          <div class="grid vertical-align">
+            <div class="column">
+              <h6 class='_html'>HTML</h6>
+              <pre>
+</pre>
+            </div>
+          </div>
+          <div class="grid vertical-align">
+            <div class="column">
+              <h6 class='_css'>CSS</h6>
+              <pre>
+</pre>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section><!-- Page 37 (おわり) -->
+        <div class="wrap aligncenter bg-blue">
+          <h1><strong>おわり</strong></h1><br>
+          <p class="text-intro"></p>
+        </div>
+      </section>
     </article>
   </main>
   <script src="static/js/webslides.js"></script>
