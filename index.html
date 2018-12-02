@@ -882,30 +882,65 @@ csslint: No errors in /Users/markun/sample.css.
           </div>
         </div>
       </section>
-      <section><!-- Page 36 (5-10. float使うよりはflexboxを) -->
+      <section><!-- Page 36 (5-10. floatで頑張るよりもグリッドレイアウトを) -->
         <div class="wrap">
           <h2><strong>5. CSSLintの紹介</strong></h2>
-          <h4><strong>5-10. float使うよりはflexboxを</strong></h4><br>
+          <h4><strong>5-10. floatで頑張るよりもグリッドレイアウトを</strong></h4><br>
           <div class="column code">
-            <p></p>
+            <p>最近ではグリッドレイアウトが普及しているため、floatを多用することは少なくなっていると思います。<br>
+            グリッドレイアウトは要素を格子状に並べることによって、美しく整えられた印象のWebサイトを作るためのデザイン手法です。<br>
+            グリッドレイアウトを使用するとこのようなレイアウトを簡単に作成することができます。</p>
           </div>
+          <br>
+          <img style='width: 1141px; height: 269px;' src='static/images/flexbox.png'/>
+        </div>
+      </section>
+      <section><!-- Page 37 (5-10. floatで頑張るよりもグリッドレイアウトを) -->
+        <div class="wrap">
+          <h2><strong>5. CSSLintの紹介</strong></h2>
+          <h4><strong>5-10. floatで頑張るよりもグリッドレイアウトを</strong></h4><br>
           <div class="grid vertical-align">
             <div class="column">
               <h6 class='_html'>HTML</h6>
               <pre>
+&lt;div class='grid-container'&gt;
+  &lt;div class='grid-child'>コンテナ1&lt;/div&gt;
+  &lt;div class='grid-child'>コンテナ2&lt;/div&gt;
+  &lt;div class='grid-child'>コンテナ3&lt;/div&gt;
+  &lt;div class='grid-child'>コンテナ4&lt;/div&gt;
+  &lt;div class='grid-child'>コンテナ5&lt;/div&gt;
+  &lt;div class='grid-child'>コンテナ6&lt;/div&gt;
+&lt;/div&gt;
 </pre>
             </div>
-          </div>
-          <div class="grid vertical-align">
             <div class="column">
               <h6 class='_css'>CSS</h6>
               <pre>
+.grid-container {
+  /* グリッドコンテナの作成 */                      
+  <span class='_red'>display: grid;</span>
+  /* 縦横向きのグリッドラインを定義 */                       
+  <span class='_red'>grid-template-columns: 1fr 4fr 2fr;</span>
+  <span class='_red'>grid-template-rows: 1fr 5fr 1fr;</span>
+}
+.grid-child {
+  border-radius: 5px;
+  color: white;
+  margin: 5px;
+  padding: 10px;
+}
+.grid-child:nth-child(1) { background: lightblue; }
+.grid-child:nth-child(2) { background: lightcoral; }
+.grid-child:nth-child(3) { background: lightgreen; }
+.grid-child:nth-child(4) { background: lightpink; }
+.grid-child:nth-child(5) { background: lightseagreen; }
+.grid-child:nth-child(6) { background: lightskyblue; }
 </pre>
             </div>
           </div>
         </div>
       </section>
-      <section><!-- Page 37 (おわり) -->
+      <section><!-- Page 38 (おわり) -->
         <div class="wrap aligncenter bg-blue">
           <h1><strong>おわり</strong></h1><br>
           <p class="text-intro"></p>
